@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model FormSubmission {
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  submissionData Json?
+  updatedAt      DateTime @updatedAt
+  userEmail      String?
+  userName       String?
+}
+
+model Configuration {
+  automationEnabled Boolean?
+  createdAt         DateTime @default(now())
+  googleSheetId     String?
+  id                String   @id @default(cuid())
+  updatedAt         DateTime @updatedAt
+}
